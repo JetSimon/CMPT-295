@@ -1,50 +1,64 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 12, 0	sdk_version 12, 0
-	.globl	_decode2                        ## -- Begin function decode2
-	.p2align	4, 0x90
-_decode2:                               ## @decode2
+	.file	"decode2.c"
+	.text
+	.globl	decode2
+	.type	decode2, @function
+decode2:
+.LFB23:
 	.cfi_startproc
-## %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movq	%rsi, %rax
-	subq	%rdx, %rax
-	imulq	%rax, %rdi
-	andl	$1, %eax
-	negq	%rax
-	xorq	%rdi, %rax
-	popq	%rbp
-	retq
+	endbr64
+	subq	%rdx, %rsi #y -= z
+	imulq	%rsi, %rdi #x *= y
+	salq	$63, %rsi #compiler recognizes that y = output, and we don't use y in any operations. so y << 63
+	sarq	$63, %rsi #y >> 63
+	movq	%rdi, %rax #move x instead to return value, because we don't use it again except in last operation
+	xorq	%rsi, %rax #x ^ y to return
+	ret #return final value. Overall we can notice a lot of optimizations made by the compiler.
 	.cfi_endproc
-                                        ## -- End function
-	.globl	_main                           ## -- Begin function main
-	.p2align	4, 0x90
-_main:                                  ## @main
+.LFE23:
+	.size	decode2, .-decode2
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC0:
+	.string	"%ld\n"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB24:
 	.cfi_startproc
-## %bb.0:
-	pushq	%rbp
+	endbr64
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movl	$1000, %edi                     ## imm = 0x3E8
-	movl	$22322, %esi                    ## imm = 0x5732
-	movl	$34242, %edx                    ## imm = 0x85C2
-	callq	_decode2
-	leaq	L_.str(%rip), %rdi
-	movq	%rax, %rsi
-	xorl	%eax, %eax
-	callq	_printf
-	xorl	%eax, %eax
-	popq	%rbp
-	retq
+	movl	$34242, %edx
+	movl	$22322, %esi
+	movl	$1000, %edi
+	call	decode2
+	movq	%rax, %rdx
+	leaq	.LC0(%rip), %rsi
+	movl	$1, %edi
+	movl	$0, %eax
+	call	__printf_chk@PLT
+	movl	$0, %eax
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
+	ret
 	.cfi_endproc
-                                        ## -- End function
-	.section	__TEXT,__cstring,cstring_literals
-L_.str:                                 ## @.str
-	.asciz	"%ld\n"
-
-.subsections_via_symbols
+.LFE24:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0"
+	.section	.note.GNU-stack,"",@progbits
+	.section	.note.gnu.property,"a"
+	.align 8
+	.long	 1f - 0f
+	.long	 4f - 1f
+	.long	 5
+0:
+	.string	 "GNU"
+1:
+	.align 8
+	.long	 0xc0000002
+	.long	 3f - 2f
+2:
+	.long	 0x3
+3:
+	.align 8
+4:
