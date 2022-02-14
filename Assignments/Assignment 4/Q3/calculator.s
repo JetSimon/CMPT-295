@@ -14,9 +14,10 @@ lessThan: # Returns 1 if arg 1 > arg 2 else 0
 	ret
 
 plus:  # performs integer addition
-# Requirement:
-# - you cannot use add* instruction
-# - you cannot use a loop
+	xorl %eax, %eax # Clear return register
+	leai (%edi, %esi, 1), %eax
+	ret
+
 
 
 minus: # performs integer subtraction
