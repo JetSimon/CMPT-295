@@ -42,8 +42,8 @@ mul: # performs integer multiplication - when both operands are non-negative!
 		add %edi, %eax
 
 	cond:
-		cmpl %r8d, %esi
-		jg loop
+		cmpl %esi, %r8d
+		jl loop
 
 	ret
 
