@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 		y = atoi(argv[2]);
 
 		result = lessThan(x, y); // Make sure you change the name of this function - see calculator.s
-  		printf("%d ??? %d -> %d\n", x, y, result); // Make sure you change ??? to the appropriate symbol
+  		printf("%d < %d -> %d\n", x, y, result); // Make sure you change ??? to the appropriate symbol
 
 		result = plus(x, y);
   		printf("%d + %d = %d\n", x, y, result);
