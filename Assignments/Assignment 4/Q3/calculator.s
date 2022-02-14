@@ -15,15 +15,16 @@ lessThan: # Returns 1 if arg 1 > arg 2 else 0
 
 plus:  # performs integer addition
 	xorl %eax, %eax # Clear return register
-	lea (%edi, %esi, 1), %eax
+	lea (%edi, %esi, 1), %eax #Use lea to add x + y*1 and store in return reg
 	ret
 
 
 
 minus: # performs integer subtraction
-# Requirement:
-# - you cannot use sub* instruction
-# - you cannot use a loop
+	xorl %eax, %eax # Clear return register
+	neg %edi # turn y into -y to turn into subtraction
+	lea (%edi, %esi, 1), %eax #Use lea to add x + y*1 and store in return reg
+	ret
 
 
 mul: # performs integer multiplication - when both operands are non-negative!
