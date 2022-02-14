@@ -39,13 +39,13 @@ mul: # performs integer multiplication - when both operands are non-negative!
 
 	loop:
 		add $1, %r8d
-		add %esi, %eax
+		add %edi, %eax
 
 	cond:
 		cmpl %r8d, %esi
 		jl loop
 		
-	add %esi, %eax
+	add %edi, %eax
 
 	ret
 
