@@ -22,7 +22,7 @@ plus:  # performs integer addition
 
 minus: # performs integer subtraction
 	xorl %eax, %eax # Clear return register
-	neg %edi # turn y into -y to turn into subtraction
+	neg %esi # turn y into -y to turn into subtraction
 	lea (%edi, %esi, 1), %eax #Use lea to add x + y*1 and store in return reg
 	ret
 
