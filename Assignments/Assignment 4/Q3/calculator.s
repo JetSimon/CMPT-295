@@ -1,15 +1,15 @@
 # add a header comment block
 
-	.globl  greaterThan
+	.globl	XX # Make sure you change the name of this function - see XX function below
 	.globl	plus
 	.globl	minus
 	.globl	mul
 
 # x in edi, y in esi
 
-greaterThan: # Returns 1 if arg 1 > arg 2 else 0
-	xorl	%eax, %eax # zero out %eax register 
-	cmpl	%esi, %edi # if x > y then return to 1
+XX: # Change the name of this function to something more descriptive and add a description
+	xorl	%eax, %eax
+	cmpl	%esi, %edi
 	setl	%al         # See Section 3.6.2 of our textbook for a description of the set* instructions
 	ret
 
