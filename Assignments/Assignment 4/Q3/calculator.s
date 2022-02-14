@@ -39,7 +39,7 @@ mul: # performs integer multiplication - when both operands are non-negative!
 
 	loop:
 		add $1, %r8d
-		add %esi, %edi
+		add %esi, %eax
 
 	cond:
 		cmpl %r8d, %esi
