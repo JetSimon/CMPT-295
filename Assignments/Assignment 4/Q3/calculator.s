@@ -33,6 +33,19 @@ mul: # performs integer multiplication - when both operands are non-negative!
 # - you cannot use imul* instruction 
 #   (or any kind of instruction that multiplies such as mul)
 # - you must use a loop
+	xorl %eax, %eax # Clear return register
+	xorl %r8d %r8d # Clear iteration var register
+	jmp cond
+
+	loop:
+		add $1 %r8d
+		add %esi %edi
+
+	cond:
+		cmpl %r8d %esi
+		jl loop
+		
+	ret
 
 # algorithm:
 #
