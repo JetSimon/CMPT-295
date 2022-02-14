@@ -15,7 +15,7 @@ lessThan: # Returns 1 if arg 1 > arg 2 else 0
 
 plus:  # performs integer addition
 	xorl %eax, %eax # Clear return register
-	leai (%edi, %esi, 1), %eax
+	lea (%edi, %esi, 1), %eax
 	ret
 
 
