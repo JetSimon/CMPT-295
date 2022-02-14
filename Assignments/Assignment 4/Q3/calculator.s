@@ -28,27 +28,22 @@ minus: # performs integer subtraction
 
 
 mul: # performs integer multiplication - when both operands are non-negative!
-# You can assume that both operands are non-negative.
-# Requirements:
-# - you cannot use imul* instruction 
-#   (or any kind of instruction that multiplies such as mul)
-# - you must use a loop
 	xorl %eax, %eax # Clear return register
 	xorl %r8d, %r8d # Clear iteration var register
-	jmp cond
+	jmp cond #start loop
 
 	loop:
-		add $1, %r8d
-		add %edi, %eax
+		add $1, %r8d #Add 1 to the %r8d iterator so we know when to stop
+		add %edi, %eax #Add x to the return value 1 time. Multiplication = repeated addition
 
 	cond:
-		cmpl %esi, %r8d
+		cmpl %esi, %r8d #is %r8d < %esi (y)? then keep looping 
 		jl loop
 
 	ret
 
-# algorithm:
-#
-#
-#
-#
+# algorithm: 
+# int output = 0;
+# for(int i = 0; i < y; i++)
+# 	output += x
+# return output;
