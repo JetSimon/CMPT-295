@@ -3,7 +3,9 @@
  *
  * Purpose: Assignment 4 Question 3
  * 
- * Date: Feb. 2022
+ * Author: Jet Simon
+ * 
+ * Date: Feb 14 2022
  *
 */
 

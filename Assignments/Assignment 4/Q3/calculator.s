@@ -1,6 +1,9 @@
-# add a header comment block
+## Filename: calculator.s
+## Purpose: Assignment 4 Question 3
+## Author: Jet Simon
+## Date: Feb 14 2022
 
-	.globl	lessThan # Make sure you change the name of this function - see XX function below
+	.globl	lessThan
 	.globl	plus
 	.globl	minus
 	.globl	mul
