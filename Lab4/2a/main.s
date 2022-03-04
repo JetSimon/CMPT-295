@@ -15,21 +15,22 @@ main:
 .LFB23:
 	.cfi_startproc
 	endbr64
-	pushq	%rbp
+	pushq	%rbp #push rbp onto the stack, makes room for the buffer
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movl	$9, %ecx
-	movl	$6, %edx
-	movl	$1, %edi
+	#prep values for print on line 33
+	movl	$9, %ecx #move 9 into ecx
+	movl	$6, %edx #move 6 into edx
+	movl	$1, %edi #move 1 into edi
 	leaq	.LC0(%rip), %rsi
-	subq	$48, %rsp
-	.cfi_def_cfa_offset 64
-	movq	%fs:40, %rax
-	movq	%rax, 40(%rsp)
+	subq	$64, %rsp #make 64 bytes of room in rsp
+	.cfi_def_cfa_offset 80
+	movq	%fs:40, %rax #load in canary value
+	movq	%rax, 56(%rsp) #load in canary value
 	xorl	%eax, %eax
-	leaq	16(%rsp), %rbp
-	movl	$6, 8(%rsp)
-	movl	$9, 12(%rsp)
+	leaq	16(%rsp), %rbp #char buf[40] at offset 16
+	movl	$6, 8(%rsp) #store x in 8 offset rsp
+	movl	$9, 12(%rsp) #store y int 12 offset rsp
 	call	__printf_chk@PLT
 	leaq	12(%rsp), %rdx
 	leaq	8(%rsp), %rsi
@@ -43,10 +44,10 @@ main:
 	call	__printf_chk@PLT
 	movq	%rbp, %rdi
 	call	puts@PLT
-	movq	40(%rsp), %rax
+	movq	56(%rsp), %rax
 	xorq	%fs:40, %rax
 	jne	.L5
-	addq	$48, %rsp
+	addq	$64, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 16
 	popq	%rbp

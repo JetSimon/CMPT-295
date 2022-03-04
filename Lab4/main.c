@@ -4,7 +4,7 @@
 void proc1(char *, int *, int *);
 
 void main() {
-    char buf[40];
+    char buf[24];
     int x = 6;
     int y = 9;
 
