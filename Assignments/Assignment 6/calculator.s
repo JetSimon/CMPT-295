@@ -44,10 +44,10 @@ minus: # performs integer subtraction
 
 #x = %edi, y = %esi
 mul: # performs integer multiplication - when both operands are non-negative!
-    push %edi
-    push %esi
+    pushl %edi
+    pushl %esi
 
-    cmpl %esi, $0 #compare if the times added > 0, else jump to done
+    cmpl $0, %esi #compare if the times added > 0, else jump to done
     je done
 
     decl %esi
@@ -55,8 +55,8 @@ mul: # performs integer multiplication - when both operands are non-negative!
     call mul
 
     done:
-    pop %esi
-    pop %edi
+    popl %esi
+    popl %edi
 	ret
 
 
