@@ -11,7 +11,7 @@
 # x in edi, y in esi
 
 lessThan: # Returns 1 if arg 1 < arg 2 else 0
-	xorl	%eax, %eax #zero out %eax register 
+	    
 	cmpl	%esi, %edi #if x < y then return to 1
 	setl	%al         # See Section 3.6.2 of our textbook for a description of the set* instructions
 	ret
@@ -44,17 +44,22 @@ minus: # performs integer subtraction
 
 #x = %edi, y = %esi
 mul: # performs integer multiplication - when both operands are non-negative!
+    xorl	%eax, %eax #zero out %eax register
     pushq %rdi
     pushq %rsi
+    pushq %r12
 
     cmpl %edi, %esi #compare if the times added > 0, else jump to done
     je done
 
     subl $1, %esi
-    incl %eax
+    incl %r12d
     call mul
+    movl %r12d %eax
 
     done:
+    
+    popq %r12
     popq %rsi
     popq %rdi
 	ret
