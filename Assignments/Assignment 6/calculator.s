@@ -47,7 +47,6 @@ mul: # performs integer multiplication - when both operands are non-negative!
     xorl	%eax, %eax #zero out %eax register
     pushq %rdi
     pushq %rsi
-    pushq %r12
 
     cmpl $0, %esi #compare if the times added > 0, else jump to done
     je done
@@ -57,8 +56,6 @@ mul: # performs integer multiplication - when both operands are non-negative!
     addl %edi, %eax
 
     done:
-    
-    popq %r12
     popq %rsi
     popq %rdi
 	ret
