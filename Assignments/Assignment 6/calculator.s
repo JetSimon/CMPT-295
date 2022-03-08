@@ -55,7 +55,7 @@ mul: # performs integer multiplication - when both operands are non-negative!
     subl $1, %esi
     incl %r12d
     call mul
-    movl (%r12d), %eax
+    leal (%r12d, %eax, 1), %eax
 
     done:
     
