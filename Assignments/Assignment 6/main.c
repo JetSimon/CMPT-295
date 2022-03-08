@@ -27,14 +27,14 @@ int main(int argc, char *argv[]) {
 		x = atoi(argv[1]);
 		y = atoi(argv[2]);
 
-		/*result = lessThan(x, y); // Make sure you change the name of this function - see calculator.s
+		result = lessThan(x, y); // Make sure you change the name of this function - see calculator.s
   		printf("%d < %d -> %d\n", x, y, result); // Make sure you change ??? to the appropriate symbol
 
 		result = plus(x, y);
   		printf("%d + %d = %d\n", x, y, result);
 
 		result = minus(x, y);
-  		printf("%d - %d = %d\n", x, y, result);*/
+  		printf("%d - %d = %d\n", x, y, result);
 
   		result = mul(x, y);
   		printf("%d * %d = %d\n", x, y, result);
