@@ -44,15 +44,14 @@ minus: # performs integer subtraction
 
 #x = %edi, y = %esi
 mul: # performs integer multiplication - when both operands are non-negative!
-    #xorl %eax, %eax # Clear return register
     pushq %rdi
     pushq %rsi
 
     cmpl $0, %esi #compare if the times added > 0, else jump to done
     je done
 
-    sub $1, %esi
-    addl %edi, %eax
+    subl $1, %esi
+    incl $1, %eax
     call mul
 
     done:
