@@ -37,10 +37,11 @@ minus: # performs integer subtraction
 # - you must use recursion (no loop) and the stack
 
 #algorithm
-#   1. 
-#   2.
-#   3.
-#   4.
+#   1. Take in your numbers x and y. 
+#   2. Is y > 0? If so then subtract 1 from y and go to step 1
+#   3. If y == 0 then stop calling self.
+#   4. As the stack frames unwind then you will add x to the return value y times. 
+#   5. You are now returning x * y
 
 #x = %edi, y = %esi
 mul: # performs integer multiplication - when both operands are non-negative!
