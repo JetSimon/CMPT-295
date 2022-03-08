@@ -49,7 +49,7 @@ mul: # performs integer multiplication - when both operands are non-negative!
     pushq %rsi
     pushq %r12
 
-    cmpl %edi, %esi #compare if the times added > 0, else jump to done
+    cmpl $0, %esi #compare if the times added > 0, else jump to done
     je done
 
     subl $1, %esi
