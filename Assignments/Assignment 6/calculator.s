@@ -44,7 +44,7 @@ minus: # performs integer subtraction
 
 #x = %edi, y = %esi
 mul: # performs integer multiplication - when both operands are non-negative!
-    xorl %eax, %eax # Clear return register
+    #xorl %eax, %eax # Clear return register
     pushq %rdi
     pushq %rsi
 
