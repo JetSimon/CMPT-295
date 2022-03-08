@@ -29,24 +29,25 @@ minus: # performs integer subtraction
 	lea (%edi, %esi, 1), %eax #Use lea to add x + y*1 and store in return reg
 	ret
 
-# algorithm (in psuedocode): 
-# int output = 0;
-# for(int i = 0; i < y; i++)
-# 	output += x
-# return output;
+# performs integer multiplication - when both operands are non-negative!
+# You can assume that both parameters are non-negative.
+# Requirements:
+# - you cannot use imul* instruction
+#   (or any kind of instruction that multiplies such as mul)
+# - you must use recursion (no loop) and the stack
+
+#algorithm
+#   1.
+#   2.
+#   3.
+#   4.
+
 mul: # performs integer multiplication - when both operands are non-negative!
 	xorl %eax, %eax # Clear return register
-	xorl %r8d, %r8d # Clear iteration var register
-	jmp cond #start loop
 
-	loop:
-		add $1, %r8d #Add 1 to the %r8d iterator so we know when to stop
-		add %edi, %eax #Add x to the return value 1 time. Multiplication = repeated addition
+    #compare if the times added > 0, else jump to done
 
-	cond: #control falls to cond after loop
-		cmpl %esi, %r8d #is %r8d < %esi (y)? then keep looping 
-		jl loop
-
+    done:
 	ret
 
 
