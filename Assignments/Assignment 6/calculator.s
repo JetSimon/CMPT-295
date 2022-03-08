@@ -44,16 +44,16 @@ minus: # performs integer subtraction
 
 #x = %edi, y = %esi
 mul: # performs integer multiplication - when both operands are non-negative!
-    xorl	%eax, %eax #zero out %eax register
+    xorl %eax, %eax #zero out %eax register
     pushq %rdi
     pushq %rsi
 
-    cmpl $0, %esi #compare if the times added > 0, else jump to done
+    cmpl $0, %esi #compare if the times added > 0, else jump to done ie dont add more
     je done
 
-    subl $1, %esi
-    call mul
-    addl %edi, %eax
+    subl $1, %esi #subtract 1 from your y variable, using y as a counter
+    call mul #call adding function recursively 
+    addl %edi, %eax #add our x variable to return value, we do this here to avoid the zeroed out %eax
 
     done:
     popq %rsi
