@@ -37,17 +37,26 @@ minus: # performs integer subtraction
 # - you must use recursion (no loop) and the stack
 
 #algorithm
-#   1.
+#   1. 
 #   2.
 #   3.
 #   4.
 
+#x = %edi, y = %esi
 mul: # performs integer multiplication - when both operands are non-negative!
-	xorl %eax, %eax # Clear return register
+    push %edi
+    push %esi
 
-    #compare if the times added > 0, else jump to done
+    cmpl %esi, $0 #compare if the times added > 0, else jump to done
+    je done
+
+    decl %esi
+    addl %edi %eax
+    call mul
 
     done:
+    pop %esi
+    pop %edi
 	ret
 
 
