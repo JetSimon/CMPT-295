@@ -53,9 +53,8 @@ mul: # performs integer multiplication - when both operands are non-negative!
     je done
 
     subl $1, %esi
-    incl %r12d
     call mul
-    leal (%r12d, %eax, 1), %eax
+    incl %eax
 
     done:
     
