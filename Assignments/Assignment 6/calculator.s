@@ -51,7 +51,7 @@ mul: # performs integer multiplication - when both operands are non-negative!
     je done
 
     decl %esi
-    addl %edi %eax
+    addl %edi, %eax
     call mul
 
     done:
