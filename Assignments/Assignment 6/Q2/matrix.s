@@ -134,16 +134,16 @@ colLoop3:
 	addq %rdi, %r10			# r10 = A + L * (j + i*N)
 
 	movl %esi, %r11d        # r10d = N 
-	sub %ecx, %r11d
     imull %ecx, %r11d		# r10d = i*N
 	addl %r8d, %r11d        # j + i*N
 	imull $1, %r11d         # r10 = L * (j + i*N) -> L is char (1Byte)
 	addq %rdi, %r11			# r10 = A + L * (j + i*N)
 
-	movb (%r10), %r12b
-	movb (%r11), %r13b
-	movb %r13b, (%r10)  
-	movb %r12b, (%r11)   
+	#movb (%r10), %r12b
+	#movb (%r11), %r13b
+	#movb %r13b, (%r10)  
+	#movb %r12b, (%r11)   
+	movb $0, (%r11)
 
 	incl %r8d					# column number j++ (in r8d)
 	jmp colLoop3				# go to next cell
