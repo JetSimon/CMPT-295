@@ -59,12 +59,12 @@ transpose:
 rowLoop2:
 	movl $0, %r8d			# column number j in r8d -> j = 0
 	cmpl %esi, %ecx			# loop as long as i - N < 0
-	jge doneWithRows
+	jge doneWithRows2
 
 # For each cell of this row
 colLoop2:
 	cmpl %esi, %r8d			# loop as long as j - N < 0
-	jge doneWithCells
+	jge doneWithCells2
 
 # Compute the address of current cell that is copied from A to C
 # since this function is a leaf function, no need to save caller-saved registers r10 and r11
