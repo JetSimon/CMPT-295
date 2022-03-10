@@ -68,14 +68,14 @@ colLoop2:
 
 # Compute the address of current cell that is copied from A to C
 # since this function is a leaf function, no need to save caller-saved registers r10 and r11
-	movl %edx, %r10d        # r10d = N 
-    imull %esi, %r10d		# r10d = i*N
+	movl %esi, %r10d        # r10d = N 
+    imull %ecx, %r10d		# r10d = i*N
 	addl %r8d, %r10d        # j + i*N
 	imull $1, %r10d         # r10 = L * (j + i*N) -> L is char (1Byte)
 	addq %rdi, %r10			# r10 = A + L * (j + i*N)
 
 # Copy A[L * (j + i*N)] to C[L * (j + i*N)]
-	movb $0, (%r10)
+	movb %r8b, (%r10)
 	incl %r8d				# column number j++ (in r8d)
 	jmp colLoop2				# go to next cell
 
