@@ -58,7 +58,7 @@ transpose:
 # For each row
 rowLoop2:
 	movl %ecx, %r8d			# column number m in r8d -> m = n
-	incl %r8d
+	add $1, %r8d
 	mov %esi, %r9d
 	sub $2, %r9d
 	cmpl %r9d, %ecx			# loop as long as i - N < 0
