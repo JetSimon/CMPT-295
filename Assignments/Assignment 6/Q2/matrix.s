@@ -58,19 +58,19 @@ transpose:
 # For each row
 rowLoop2:
 	movl %ecx, %r8d			# column number m in r8d -> m = n
-	incl %r8d
+	incl %r8d # m = n + 1
+	
+	mov %esi, %r9d # temp = N
+	sub $2, %r9d # temp = N - 2
+	cmpl %r9d, %ecx			# loop as long as n < temp
 
-	mov %esi, %r9d
-	sub $2, %r9d
-
-	cmpl %r9d, %ecx			# loop as long as i - N < 0
 	jge doneWithRows2
 
 # For each cell of this row
 colLoop2:
-	mov %esi, %r9d
-	sub $1, %r9d
-	cmpl %r9d, %r8d			# loop as long as j - N < 0
+	mov %esi, %r9d #temp = N
+	sub $1, %r9d #temp = N - 1
+	cmpl %r9d, %r8d			# loop as long as j < N - 1
 	jge doneWithCells2
 
 # Compute the address of current cell that is copied from A to C
@@ -91,7 +91,7 @@ colLoop2:
 	#mov (%r11), %r15d
 	#mov %r8b, (%r11)
 	#mov %r15d, (%r10)
-	movq $0, (%r11)
+	movq $0, (%r10)
 
 	incl %r8d				# column number j++ (in r8d)
 	jmp colLoop2			# go to next cell
