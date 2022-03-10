@@ -122,7 +122,9 @@ rowLoop3:
 
 # For each cell of this row
 colLoop3:
-	cmpl %esi, %r8d			# loop as long as j - N < 0
+	movl %esi, %r9d #temp var here
+	subl $2, %r9d
+	cmpl %r9d, %r8d			# loop as long as j - N < 0
 	jge doneWithCells3
 
 # Compute the address of current cell that is copied from A to C
