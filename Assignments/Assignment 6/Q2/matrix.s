@@ -51,6 +51,7 @@ doneWithRows:				# bye! bye!
 	.globl	transpose
 transpose:
 	push %r13
+	push %r12
 # A in rdi, N in rsi
 	xorl %eax, %eax			# set eax to 0
 # since this function is a leaf function, no need to save caller-saved registers rcx and r8
@@ -85,7 +86,10 @@ colLoop2:
 	imull $1, %r11d         # r10 = L * (i + j*N) -> L is char (1Byte)
 	addq %rdi, %r11			# r10 = A + L * (i + j*N)
 
-	
+	movb (%r10), %r12b
+	movb (%r11), %r13b
+	movb %r13b, (%r10)  
+	movb %r12b, (%r11)   
 
 	incl %r8d					# column number j++ (in r8d)
 	jmp colLoop2				# go to next cell
@@ -96,6 +100,7 @@ doneWithCells2:
 	jmp rowLoop2				# Play it again, Sam!
 
 doneWithRows2:				# bye! bye!
+	pop %r12
 	pop %r13
 	ret
 
