@@ -58,9 +58,11 @@ transpose:
 # For each row
 rowLoop2:
 	movl %ecx, %r8d			# column number m in r8d -> m = n
-	add $1, %r8d
+	incl %r8d
+
 	mov %esi, %r9d
 	sub $2, %r9d
+
 	cmpl %r9d, %ecx			# loop as long as i - N < 0
 	jge doneWithRows2
 
@@ -89,7 +91,7 @@ colLoop2:
 	#mov (%r11), %r15d
 	#mov %r8b, (%r11)
 	#mov %r15d, (%r10)
-	movq $0, (%r10)
+	movq $0, (%r11)
 
 	incl %r8d				# column number j++ (in r8d)
 	jmp colLoop2			# go to next cell
