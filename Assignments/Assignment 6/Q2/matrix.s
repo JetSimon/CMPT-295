@@ -58,7 +58,9 @@ transpose:
 # For each row
 rowLoop2:
 	movl $0, %r8d			# column number j in r8d -> j = 0
+	sub $2, %esi
 	cmpl %esi, %ecx			# loop as long as i - N < 0
+	add $2, %esi
 	jge doneWithRows2
 
 # For each cell of this row
