@@ -11,7 +11,7 @@
 
 void copy(void *, void *, int);
 void transpose(void *, int );
-// void reverseColumns(void *, int n);
+void reverseColumns(void *, int n);
 void printMatrixByRow(void *, int);
 
 char A[N][N] = { 1,  -2,  3,  -4,
@@ -32,7 +32,8 @@ void main() {
     printf("Rotating the matrix by 90 degrees clockwise: \n");
     printMatrixByRow(C, N);
     transpose(C, N);
-//    reverseColumns(C, N);
+    printMatrixByRow(C, N);
+    reverseColumns(C, N);
     printMatrixByRow(C, N);
 
     return;
