@@ -85,11 +85,12 @@ colLoop2:
 	imull $1, %r11d         # r10 = L * (i + j*N) -> L is char (1Byte)
 	addq %rdi, %r11			# r10 = A + L * (i + j*N)
 
-	mov (%r10), %r8b
-	mov (%r11), %r15d
-	mov %r8b, (%r11)
-	mov %r15d, (%r10)
-	
+	#mov (%r10), %r8b
+	#mov (%r11), %r15d
+	#mov %r8b, (%r11)
+	#mov %r15d, (%r10)
+	movq $0, (%r10)
+
 	incl %r8d				# column number j++ (in r8d)
 	jmp colLoop2			# go to next cell
 
