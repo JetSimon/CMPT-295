@@ -137,8 +137,9 @@ colLoop3:
 
 	movl %esi, %r11d        # r10d = N 
     imull %ecx, %r11d		# r10d = i*N
-	addl %esi, %r11d        # j + i*N
-	subl %r8d, %r11d        # j + i*N
+	addl %esi, %r11d        # N + i*N
+	subl $1, %r11d
+	subl %r8d, %r11d        # N-j + i*N
 	imull $1, %r11d         # r10 = L * (j + i*N) -> L is char (1Byte)
 	addq %rdi, %r11			# r10 = A + L * (j + i*N)
 
