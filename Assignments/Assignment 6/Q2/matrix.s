@@ -116,12 +116,8 @@ reverseColumns:
 
 # For each row
 rowLoop3:
-
-	movl %esi, %r9d #temp var here
-	subl $2, %r9d
-
-	movl %ecx, %r8d			# column number j in r8d -> j = i
-	cmpl %r9d, %ecx			# loop as long as i - N < 0
+	movl $0, %r8d			# column number j in r8d -> j = 0
+	cmpl %esi, %ecx			# loop as long as i - N < 0
 	jg doneWithRows3
 
 # For each cell of this row
@@ -138,10 +134,11 @@ colLoop3:
 	addq %rdi, %r10			# r10 = A + L * (j + i*N)
 
 	movl %esi, %r11d        # r10d = N 
-    imull %r8d, %r11d		# r10d = j*N
-	addl %ecx, %r11d        # i + j*N
-	imull $1, %r11d         # r10 = L * (i + j*N) -> L is char (1Byte)
-	addq %rdi, %r11			# r10 = A + L * (i + j*N)
+	sub %ecx, %r11d
+    imull %ecx, %r11d		# r10d = i*N
+	addl %r8d, %r11d        # j + i*N
+	imull $1, %r11d         # r10 = L * (j + i*N) -> L is char (1Byte)
+	addq %rdi, %r11			# r10 = A + L * (j + i*N)
 
 	movb (%r10), %r12b
 	movb (%r11), %r13b
