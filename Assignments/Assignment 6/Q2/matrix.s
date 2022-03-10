@@ -58,6 +58,7 @@ doneWithRows:				# bye! bye!
 #####################
 	.globl	transpose
 transpose:
+	#push callee registers
 	push %r13
 	push %r12
 # A in rdi, N in rsi
@@ -109,6 +110,7 @@ doneWithCells2:
 	jmp rowLoop2				# Play it again, Sam!
 
 doneWithRows2:				# bye! bye!
+	#pop callee registers
 	pop %r12
 	pop %r13
 	ret
@@ -116,6 +118,7 @@ doneWithRows2:				# bye! bye!
 #####################
 	.globl	reverseColumns
 reverseColumns:
+	#push callee registers
 	push %r13
 	push %r12
 # A in rdi, N in rsi
@@ -167,6 +170,8 @@ doneWithCells3:
 	jmp rowLoop3				# Play it again, Sam!
 
 doneWithRows3:				# bye! bye!
+
+	#pop callee registers
 	pop %r12
 	pop %r13
 	ret
