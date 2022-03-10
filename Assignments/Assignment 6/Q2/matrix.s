@@ -75,7 +75,7 @@ colLoop2:
 	addq %rdi, %r10			# r10 = A + L * (j + i*N)
 
 # Copy A[L * (j + i*N)] to C[L * (j + i*N)]
-	movb %rcx, (%r10)
+	mov %rcx, (%r10)
 
 	incl %r8d				# column number j++ (in r8d)
 	jmp colLoop2				# go to next cell
