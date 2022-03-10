@@ -61,7 +61,7 @@ rowLoop2:
 	movl %esi, %r9d #temp var here
 	subl $2, %r9d
 
-	movl $0, %r8d			# column number j in r8d -> j = 0
+	movl %ecx, %r8d			# column number j in r8d -> j = i
 	cmpl %r9d, %ecx			# loop as long as i - N < 0
 	jge doneWithRows2
 
