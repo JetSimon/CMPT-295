@@ -132,7 +132,7 @@ rowLoop3:
 # For each cell of this row
 colLoop3:
 	movl %esi, %r9d #temp var here for storing 1/2 the N value
-	sar %r9d
+	sar %r9d #divide by 2 by bitshifting right to get 1/2 N
 	cmpl %r9d, %r8d			# loop as long as j - N < 0
 	jge doneWithCells3
 
