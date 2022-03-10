@@ -91,7 +91,7 @@ colLoop2:
 	#mov (%r11), %r15d
 	#mov %r8b, (%r11)
 	#mov %r15d, (%r10)
-	movq %r9, (%r10)
+	movq %r9d, (%r10)
 
 	incl %r8d				# column number j++ (in r8d)
 	jmp colLoop2			# go to next cell
