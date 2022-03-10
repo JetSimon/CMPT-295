@@ -62,14 +62,14 @@ rowLoop2:
 	mov %esi, %r9d
 	add $2, %r9d
 	cmpl %r9d, %ecx			# loop as long as i - N < 0
-	jge doneWithRows2
+	jg doneWithRows2
 
 # For each cell of this row
 colLoop2:
 	mov %esi, %r9d
 	sub $1, %r9d
 	cmpl %r9d, %r8d			# loop as long as j - N < 0
-	jge doneWithCells2
+	jg doneWithCells2
 
 # Compute the address of current cell that is copied from A to C
 # since this function is a leaf function, no need to save caller-saved registers r10 and r11
