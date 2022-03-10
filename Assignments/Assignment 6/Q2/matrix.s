@@ -1,3 +1,11 @@
+#filename: matrix.s
+#written by Jet Simon (Student # 301302188) on March 10 2022
+#functions:
+#	copy - copies a N by N matrix
+#	transposes - transposes an N by N matrix
+#	reverseColumns - reverses the columns of an N by M matrix 
+
+
 	.globl	copy
 copy:
 # A in rdi, C in rsi, N in edx
@@ -42,7 +50,7 @@ doneWithRows:				# bye! bye!
 	ret
 
 
-
+#transposition algo:
 #for n = 0 to N - 2
 #    for m = n + 1 to N - 1
 #        swap A(n,m) with A(m,n)
@@ -86,6 +94,7 @@ colLoop2:
 	imull $1, %r11d         # r10 = L * (i + j*N) -> L is char (1Byte)
 	addq %rdi, %r11			# r10 = A + L * (i + j*N)
 
+	#swap the cells to transpose
 	movb (%r10), %r12b
 	movb (%r11), %r13b
 	movb %r13b, (%r10)  
@@ -122,8 +131,8 @@ rowLoop3:
 
 # For each cell of this row
 colLoop3:
-	movl %esi, %r9d #temp var here
-	subl $2, %r9d
+	movl %esi, %r9d #temp var here for storing 1/2 the N value
+	sar %r9d
 	cmpl %r9d, %r8d			# loop as long as j - N < 0
 	jge doneWithCells3
 
@@ -137,17 +146,17 @@ colLoop3:
 
 	movl %esi, %r11d        # r10d = N 
     imull %ecx, %r11d		# r10d = i*N
-	addl %esi, %r11d        # N + i*N
-	subl $1, %r11d
-	subl %r8d, %r11d        # N-j + i*N
+	addl %esi, %r11d        # N + i*N because we want to get the opposite column
+	subl $1, %r11d #Compensate for 0 indexing
+	subl %r8d, %r11d        # N-j + i*N subtract j to get inverse column
 	imull $1, %r11d         # r10 = L * (j + i*N) -> L is char (1Byte)
 	addq %rdi, %r11			# r10 = A + L * (j + i*N)
 
+	#swap the cells to reverse
 	movb (%r10), %r12b
 	movb (%r11), %r13b
 	movb %r13b, (%r10)  
 	movb %r12b, (%r11)   
-	#movb $0, (%r11)
 
 	incl %r8d					# column number j++ (in r8d)
 	jmp colLoop3				# go to next cell
