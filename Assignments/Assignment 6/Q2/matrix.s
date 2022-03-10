@@ -50,6 +50,7 @@ doneWithRows:				# bye! bye!
 #####################
 	.globl	transpose
 transpose:
+	push %r13
 # A in rdi, N in rsi
 	xorl %eax, %eax			# set eax to 0
 # since this function is a leaf function, no need to save caller-saved registers rcx and r8
@@ -78,9 +79,15 @@ colLoop2:
 	imull $1, %r10d         # r10 = L * (j + i*N) -> L is char (1Byte)
 	addq %rdi, %r10			# r10 = A + L * (j + i*N)
 
-# Copy A[L * (j + i*N)] to C[L * (j + i*N)]
-	movb %r8b, (%r10)
-	incl %r8d				# column number j++ (in r8d)
+	movl %esi, %r11d        # r10d = N 
+    imull %r8d, %r11d		# r10d = j*N
+	addl %ecx, %r11d        # i + j*N
+	imull $1, %r11d         # r10 = L * (i + j*N) -> L is char (1Byte)
+	addq %rdi, %r11			# r10 = A + L * (i + j*N)
+
+	
+
+	incl %r8d					# column number j++ (in r8d)
 	jmp colLoop2				# go to next cell
 
 # Go to next row
@@ -89,6 +96,7 @@ doneWithCells2:
 	jmp rowLoop2				# Play it again, Sam!
 
 doneWithRows2:				# bye! bye!
+	pop %r13
 	ret
 
 #####################
