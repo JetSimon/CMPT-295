@@ -63,7 +63,7 @@ rowLoop2:
 
 	movl %ecx, %r8d			# column number j in r8d -> j = i
 	cmpl %r9d, %ecx			# loop as long as i - N < 0
-	jge doneWithRows2
+	jg doneWithRows2
 
 # For each cell of this row
 colLoop2:
