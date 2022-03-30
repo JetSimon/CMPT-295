@@ -41,6 +41,7 @@ void main(int argc, char *argv[]) {
     getrusage(RUSAGE_SELF, &start);
     qSort1(A, N);
     getrusage(RUSAGE_SELF, &end);
+    printf("It took %ld microseconds to quirksort1 the array.\n", end.ru_utime.tv_usec - start.ru_utime.tv_usec);
     // qSort2(A, N);
 	
 	return;
