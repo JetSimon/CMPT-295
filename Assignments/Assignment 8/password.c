@@ -10,6 +10,8 @@ bool IsPasswordOK() {
 	// Memory storage for pwd
 	char password[aSize]; 
 
+	printf("address of password: %p\n", &password);
+
 	// Get input from keyboard
 	gets(password);  
 
