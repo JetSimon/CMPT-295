@@ -9,7 +9,7 @@
 void qSort1(int *A, int n);
 void qSort2(int *A, int n);
 
-#define N 32000000
+#define N 1000000
 
 int A[N];
 
@@ -22,7 +22,7 @@ void main(int argc, char *argv[]) {
     struct rusage start;
     struct rusage end;
 
-    getrusage(RUSAGE_SELF, &start);
+    
     A[i] = 0;
     for (i = 1; i < N; i++) {
          A[i] = i / 100;
@@ -33,12 +33,14 @@ void main(int argc, char *argv[]) {
          A[i] = A[pos];
          A[pos] = tmp;
     }
-    getrusage(RUSAGE_SELF, &end);
-    printf("It took %ld microseconds to initialize the array.\n", end.ru_utime.tv_usec - start.ru_utime.tv_usec);
+    
+    //printf("It took %ld microseconds to initialize the array.\n", end.ru_utime.tv_usec - start.ru_utime.tv_usec);
 
     // For Part 2:
     // 
-    // qSort1(A, N);
+    getrusage(RUSAGE_SELF, &start);
+    qSort1(A, N);
+    getrusage(RUSAGE_SELF, &end);
     // qSort2(A, N);
 	
 	return;
