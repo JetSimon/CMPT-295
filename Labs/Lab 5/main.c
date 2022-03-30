@@ -9,7 +9,7 @@
 void qSort1(int *A, int n);
 void qSort2(int *A, int n);
 
-#define N 1000000
+#define N 2000000
 
 int A[N];
 
