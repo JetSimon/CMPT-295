@@ -39,10 +39,11 @@ void main(int argc, char *argv[]) {
 
     // For Part 2:
     getrusage(RUSAGE_SELF, &start);
-    qSort1(A, N);
+    qSort2(A, N);
+    //qSort1(A, N);
     getrusage(RUSAGE_SELF, &end);
     printf("It took %ld microseconds to qs1 the array.\n", (end.ru_utime.tv_usec + end.ru_utime.tv_sec * 1000000) - (start.ru_utime.tv_usec + start.ru_utime.tv_sec * 1000000));
-    // qSort2(A, N);
+    
 	
 	return;
 }
