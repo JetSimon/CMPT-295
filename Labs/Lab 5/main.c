@@ -22,7 +22,7 @@ void main(int argc, char *argv[]) {
     struct rusage start;
     struct rusage end;
 
-    
+    getrusage(RUSAGE_SELF, &start);
     A[i] = 0;
     for (i = 1; i < N; i++) {
          A[i] = i / 100;
@@ -33,15 +33,12 @@ void main(int argc, char *argv[]) {
          A[i] = A[pos];
          A[pos] = tmp;
     }
+    getrusage(RUSAGE_SELF, &end);
     
-    //printf("It took %ld microseconds to initialize the array.\n", end.ru_utime.tv_usec - start.ru_utime.tv_usec);
+    printf("It took %ld microseconds to initialize the array.\n", (end.ru_utime.tv_usec + end.ru_utime.tv_usec * 1000000) - (start.ru_utime.tv_usec + start.ru_utime.tv_usec * 1000000));
 
     // For Part 2:
-    // 
-    getrusage(RUSAGE_SELF, &start);
-    qSort1(A, N);
-    getrusage(RUSAGE_SELF, &end);
-    printf("%ld - %ld, It took %ld microseconds to quirksort1 the array.\n",end.ru_utime.tv_usec, start.ru_utime.tv_usec, end.ru_utime.tv_usec - start.ru_utime.tv_usec);
+    // qSort1(A, N);
     // qSort2(A, N);
 	
 	return;
